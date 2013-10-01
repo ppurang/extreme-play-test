@@ -22,7 +22,7 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
   feature("Player registration") {
     info("allow players to register at http://localhost:9000/player/{uuid}")
 
-    scenario("valid register") {
+    scenario("valid register") (pendingUntilFixed{
       Given("a valid payload")
       val payload =
         """{
@@ -67,7 +67,7 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
         //location.unsafePerformIO() should be (Option(List("Location" -> s"http://localhost:9000/player/$uuid" )))
         And("the player can be retrieved")
       //GET(url).executeUnsafe.code should be(200)
-    }
+    })
 
     scenario("invalid payload")(pendingUntilFixed {
       Given("an invalid payload")

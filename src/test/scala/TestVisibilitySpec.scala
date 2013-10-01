@@ -1,6 +1,5 @@
 import com.stackmob.newman.response.HttpResponse
 import extreme.play.test.PendingException
-import java.util.UUID
 import org.scalatest._
 
 import com.stackmob.newman._

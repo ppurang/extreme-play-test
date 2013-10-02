@@ -35,7 +35,7 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
           | "url" : "http://spray-it.herokuapp.com/play"
           |}
         """.stripMargin
-      When("it is registered with a valid uuid")
+      When("it is registered")
       val url = new URL(s"$serverToTest/player/")
       val post: HttpRequest = POST(url).addBody(payload).toRequest
       val deferredPost = post.apply
@@ -61,9 +61,19 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
 
     scenario("invalid payload")(pendingUntilFixed {
       Given("an invalid payload")
-      When("when it is registered with a valid uuid")
+      val payload =
+        """{
+          | "url" : "http://spray-it.herokuapp.com/play"
+          |}
+        """.stripMargin
+
+      When("when it is registered")
+      val url = new URL(s"$serverToTest/player/")
+      val post: HttpRequest = POST(url).addBody(payload).toRequest
+      val deferredPost = post.apply
+
       Then("bad request is raised")
-      ???
+      Await.result(deferredPost, 5.second).code.code  should be(400)
     })
 
   }

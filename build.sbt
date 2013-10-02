@@ -28,9 +28,14 @@ libraryDependencies ++= {
       "net.liftweb" %% "lift-json-scalaz7" % liftJsonVersion,
       "org.scalatest" % "scalatest_2.10" % "2.0.M5b" % "test",
       //"org.scalatest" %% "scalatest" % scalaTestVersion % "test",
-      "org.scalacheck" %% "scalacheck" % "1.10.1" % "test"
+      "org.scalacheck" %% "scalacheck" % "1.10.1" % "test",
+      "com.typesafe" % "config" % "1.0.2"
      )
 }
 
 logBuffered := false
+
+fork in Test := true
+
+javaOptions in Test := Seq("-Dconfig.resource=application.conf")
 

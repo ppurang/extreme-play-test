@@ -27,27 +27,15 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
       val payload =
         """{
           | "name" : "whatever",
-          | "url" : "http://localhost:5000/play"
+          | "url" : "http://spray-it.herokuapp.com/play"
           |}
         """.stripMargin
       When("it is registered with a valid uuid")
-      val url = new URL(s"http://localhost:9000/player/")
-      val put: HttpRequest = POST(url).addBody(payload).toRequest
-      val deferredPut = put.apply
-
-      /*      val future = for {
-        response <- executedPut
-        if response.code.code == 201
-        headers <- Future{response.headers}
-      } yield headers*/
-
-
+      val url = new URL(s"http://extreme-play.herokuapp.com/player/")
+      val post: HttpRequest = POST(url).addBody(payload).toRequest
+      val deferredPost = post.apply
 
       def header : HeaderList => Option[Header]= _.list.find(h => h._1 == "Location")
-
-      implicit def any2Future[A](a: => A) = Future {
-        a
-      }
 
       def location: Headers => Option[String] = _.flatMap {
         _.list.find(_._1 == HttpHeaders.LOCATION).map(_._2)
@@ -60,7 +48,26 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
           None
 
 
-        println(Await.result(deferredPut.flatMap(futureMaybeHeaderList(_)), 1.second))
+
+      /*      val future = for {
+        response <- executedPut
+        if response.code.code == 201
+        headers <- Future{response.headers}
+      } yield headers*/
+
+
+
+
+
+      implicit def any2Future[A](a: => A) = Future {
+        a
+      }
+
+
+
+
+
+        println(Await.result(deferredPost.flatMap(futureMaybeHeaderList(_)), 1.second))
 
         Then("a valid location is returned")
         // val location = put.map(_.map(_.headers.map(_.list.filter(_._1 == "Location"))).get.headOption)

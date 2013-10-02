@@ -8,7 +8,7 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import java.net.URL
 import org.scalatest.matchers.ShouldMatchers
-
+import Fixtures._
 
 class TestVisibilitySpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter with ShouldMatchers {
   implicit val client = new SprayHttpClient()
@@ -20,7 +20,7 @@ class TestVisibilitySpec extends FeatureSpec with GivenWhenThen with BeforeAndAf
       Given("A valid player url")
       val url = "https://flood.io/"
       When("it is submitted to the /test?url={player url}")
-      val xtreme = s"http://extreme-play.herokuapp.com/test?url=$url"
+      val xtreme = s"$serverToTest/test?url=$url"
       Then("it returns a 200")
       val response: HttpResponse = Await.result(GET(new URL(xtreme)).toRequest.apply, 5 second)
       response.code.code should be(200)

@@ -35,7 +35,7 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
       val put: HttpRequest = POST(url).addBody(payload).toRequest
       val deferredPut = put.apply
 
-/*      val future = for {
+      /*      val future = for {
         response <- executedPut
         if response.code.code == 201
         headers <- Future{response.headers}
@@ -77,52 +77,5 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
     })
 
   }
-
-  //should this even be allowed?
-  feature("Player withdrawl") {
-    info("allow players to withdraw  at http://localhost:9000/player/{uuid}")
-    //info("I should be able to register myself")
-
-    scenario("withdrawl") {
-      Given("a valid player uuid")
-/*
-      val wuuid = UUID.randomUUID()
-      val payload =
-        """{
-          | "name" : "whatever",
-          | "uri" : "http://someotherhost:8080/play"
-          |}
-        """.stripMargin
-      val url = new URL(s"http://localhost:9000/player/$wuuid")
-      PUT(url).addBody(payload).executeUnsafe.code should be(201)
-*/
-
-      When("the player withdraws using delete")
-//      DELETE(url).executeUnsafe
-      Then("that player isn't registered anymore")
-//      GET(url).executeUnsafe.code should be(404)
-    }
-
-    scenario("invalid uuid")(pendingUntilFixed{
-      Given("an invalid uuid")
-      When("it is withdrawn")
-      Then("bad request is raised")
-      ???
-    })
-
-    scenario("not found")(pendingUntilFixed {
-      Given("a valid uuid that hasn't been registered")
-      When("it is withdrawn")
-      Then("not found is raised")
-      ???
-    })
-
-  }
-
-
-
-
-
-
 }
 

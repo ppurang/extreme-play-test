@@ -74,6 +74,7 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
         //location.unsafePerformIO() should be (Option(List("Location" -> s"http://localhost:9000/player/$uuid" )))
         And("the player can be retrieved")
       //GET(url).executeUnsafe.code should be(200)
+      ???
     })
 
     scenario("invalid payload")(pendingUntilFixed {

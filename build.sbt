@@ -38,4 +38,3 @@ logBuffered := false
 fork in Test := true
 
 javaOptions in Test := Seq("-Dconfig.resource=application.conf")
-

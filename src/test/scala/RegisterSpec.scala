@@ -1,4 +1,4 @@
-import com.stackmob.newman.request.HttpRequest
+ import com.stackmob.newman.request.HttpRequest
 import com.stackmob.newman.response.HttpResponse
 import extreme.play.test.PendingException
 import java.util.UUID

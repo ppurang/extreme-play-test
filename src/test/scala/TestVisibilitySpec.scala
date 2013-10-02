@@ -22,7 +22,7 @@ class TestVisibilitySpec extends FeatureSpec with GivenWhenThen with BeforeAndAf
       When("it is submitted to the /test?url={player url}")
       val xtreme = s"http://extreme-play.herokuapp.com/test?url=$url"
       Then("it returns a 200")
-      val response: HttpResponse = Await.result(GET(new URL(xtreme)).toRequest.apply, 1 second)
+      val response: HttpResponse = Await.result(GET(new URL(xtreme)).toRequest.apply, 5 second)
       response.code.code should be(200)
     }
 

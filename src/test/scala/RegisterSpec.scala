@@ -27,7 +27,7 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
   feature("Player registration") {
     info("allow players to register at http://localhost:9000/player/{uuid}")
 
-    scenario("valid register") (pendingUntilFixed{
+    scenario("valid register") {
       Given("a valid payload")
       val payload =
         """{
@@ -56,10 +56,9 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
         locationHeader should not be(None)
 
         //locationHeader.getOrElse("") should (startWith(s"$serverToTest"))
-      ???
-    })
+    }
 
-    scenario("invalid payload")(pendingUntilFixed {
+    scenario("invalid payload") {
       Given("an invalid payload")
       val payload =
         """{
@@ -74,7 +73,7 @@ class RegisterSpec extends FeatureSpec with GivenWhenThen with BeforeAndAfter wi
 
       Then("bad request is raised")
       Await.result(deferredPost, 5.second).code.code  should be(400)
-    })
+    }
 
   }
 }

@@ -18,9 +18,8 @@ class TestVisibilitySpec extends FeatureSpec with GivenWhenThen with BeforeAndAf
 
     scenario("up"){
       Given("A valid player url")
-      val url = "https://flood.io/"
       When("it is submitted to the /test?url={player url}")
-      val xtreme = s"$serverToTest/test?url=$url"
+      val xtreme = s"$serverToTest/test?url=$playerToTest"
       Then("it returns a 200")
       val response: HttpResponse = Await.result(GET(new URL(xtreme)).toRequest.apply, 5 second)
       response.code.code should be(200)
